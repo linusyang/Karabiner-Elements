@@ -386,25 +386,16 @@ private:
   bool is_ignored_device(const human_interface_device& device) {
     if (auto vendor_id = device.get_vendor_id()) {
       if (auto product_id = device.get_product_id()) {
-        bool is_keyboard = device.is_keyboard();
-        bool is_pointing_device = device.is_pointing_device();
-
         for (const auto& d : devices_configuration_) {
           if (d.first.vendor_id == *vendor_id &&
-              d.first.product_id == *product_id &&
-              d.first.is_keyboard == is_keyboard &&
-              d.first.is_pointing_device == is_pointing_device) {
+              d.first.product_id == *product_id) {
             return d.second;
           }
         }
       }
     }
 
-    if (device.is_pointing_device()) {
-      return true;
-    }
-
-    return false;
+    return true;
   }
 
   void output_devices_json(void) {
@@ -422,17 +413,25 @@ private:
       });
       if (auto vendor_id = (it.second)->get_vendor_id()) {
         j["identifiers"]["vendor_id"] = static_cast<uint32_t>(*vendor_id);
+      } else {
+        j["identifiers"]["vendor_id"] = 0;
       }
       if (auto product_id = (it.second)->get_product_id()) {
         j["identifiers"]["product_id"] = static_cast<uint32_t>(*product_id);
+      } else {
+        j["identifiers"]["product_id"] = 0;
       }
       j["identifiers"]["is_keyboard"] = (it.second)->is_keyboard();
       j["identifiers"]["is_pointing_device"] = (it.second)->is_pointing_device();
       if (auto manufacturer = (it.second)->get_manufacturer()) {
         j["descriptions"]["manufacturer"] = boost::trim_copy(*manufacturer);
+      } else {
+        j["descriptions"]["manufacturer"] = "";
       }
       if (auto product = (it.second)->get_product()) {
         j["descriptions"]["product"] = boost::trim_copy(*product);
+      } else {
+        j["descriptions"]["product"] = "";
       }
       j["ignore"] = is_ignored_device(*(it.second));
 
