@@ -40,11 +40,11 @@
 }
 
 - (IBAction)checkForUpdatesStableOnly:(id)sender {
-  [UpdaterController checkForUpdatesStableOnly];
+  // [UpdaterController checkForUpdatesStableOnly];
 }
 
 - (IBAction)checkForUpdatesWithBetaVersion:(id)sender {
-  [UpdaterController checkForUpdatesWithBetaVersion];
+  // [UpdaterController checkForUpdatesWithBetaVersion];
 }
 
 - (IBAction)launchUninstaller:(id)sender {

@@ -32,9 +32,9 @@ cp src/core/grabber/build/Release/karabiner_grabber "$basedir"
 cp src/core/event_dispatcher/build/Release/karabiner_event_dispatcher "$basedir"
 cp src/core/console_user_server/build/Release/karabiner_console_user_server "$basedir"
 
-basedir="pkgroot/Library/Application Support/org.pqrs/Karabiner-Elements/updater"
-mkdir -p "$basedir"
-cp -R "src/apps/Updater/build/Release/Karabiner-Elements.app" "$basedir"
+# basedir="pkgroot/Library/Application Support/org.pqrs/Karabiner-Elements/updater"
+# mkdir -p "$basedir"
+# cp -R "src/apps/Updater/build/Release/Karabiner-Elements.app" "$basedir"
 
 mkdir -p                  "pkgroot/Library"
 cp -R files/LaunchDaemons "pkgroot/Library"
